@@ -20,7 +20,7 @@ import { Response } from 'src/app/interfaces/response';
 })
 export class MomentsService {
   // aqui será a URL base da nossa API
-  private baseApiUrl: string = environment.baseApiUrl;
+  private baseApiUrl: string = 'http://localhost:3333/';
 
   // aqui será a rota que utilizaremos para a requisição
   private ApiUrl = `${this.baseApiUrl}api/moments`;
