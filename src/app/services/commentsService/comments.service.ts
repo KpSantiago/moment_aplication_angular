@@ -12,7 +12,7 @@ import { Response } from 'src/app/interfaces/response';
   providedIn: 'root',
 })
 export class CommentsService {
-  private baseApiUrl: string = environment.baseApiUrl;
+  private baseApiUrl: string = 'http://localhost:3333/';
 
   private apiUrl = `${this.baseApiUrl}api/moments`;
 
