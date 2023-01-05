@@ -1,0 +1,29 @@
+.message {
+  background-color: #fff;
+  border: 3px solid var(--hover-color);
+  width: 50%;
+  position: fixed;
+  z-index: 99;
+  top: 3em;
+  left: -25%;
+  margin-left: 50%;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.message-header button {
+  background-color: var(--hover-color);
+  color: #fff;
+  font-size: 0.75em;
+  border: 1.2px solid var(--default-font-color);
+  border-radius: 5px;
+  padding: 0.5em 0.8em;
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.nmConateiner {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1 span {
+  color: var(--hover-color);
+  font-family: "Parisienne", cursive;
+  font-size: 40px;
+  margin: 0 10px;
+}
+
+app-form {
+  width: 100%;
+}

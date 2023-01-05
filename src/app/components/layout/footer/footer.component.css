@@ -1,0 +1,28 @@
+footer {
+  max-width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 -1px 8px 3px rgb(216, 54, 95, 0.15),
+    0 -2px 20px 4px rgb(216, 54, 95, 0.1);
+  border-radius: 20px;
+  position: relative;
+  z-index: 20;
+}
+p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+strong {
+  color: var(--logo-color);
+}
+
+span {
+  font-family: Parisienne, cursive;
+  font-weight: 700;
+  font-size: 14px;
+}

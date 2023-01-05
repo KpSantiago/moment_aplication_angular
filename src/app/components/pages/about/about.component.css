@@ -1,0 +1,34 @@
+.about {
+  max-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 2em;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h2 span {
+  color: var(--hover-color);
+  font-family: var(--font-logo);
+  font-size: 1.2em;
+  margin-left: 3px;
+}
+
+a {
+  color: var(--hover-color);
+}
+
+.line {
+  background-color: var(--hover-color);
+  width: 0%;
+  height: 2px;
+  transition: all 0.5s;
+}
+
+.link:hover .line {
+  width: 100%;
+}

@@ -1,0 +1,45 @@
+<div class="homeContainer" *ngIf="allMomentsHome.length > 0; else noMoments">
+  <div class="header-main">
+    <h1>Veja o que estão compartilhando!</h1>
+    <form class="search-container">
+      <fa-icon class="search-icon" [icon]="faSearch"></fa-icon>
+      <input type="search" (input)="search($event)" />
+    </form>
+  </div>
+  <div class="moments-container">
+    <div class="moments" *ngFor="let moment of momentsHome">
+      <div class="image">
+        <img
+          src="{{ baseApiUrl }}uploads/{{ moment.image }}"
+          alt="{{ moment.title }}"
+        />
+      </div>
+      <div class="title">
+        <strong>{{ moment.title }}</strong>
+        <p>{{ moment.created_at }}</p>
+      </div>
+      <div class="description">
+        {{ moment.description }}
+      </div>
+      <div class="comments">
+        <strong [ngStyle]="{ 'margin-right': '5px' }">Comentários:</strong>
+        <span
+          >{{
+            moment.comments!.length <= 0
+              ? "Nenhum"
+              : moment.comments!.length + " comentários"
+          }}
+        </span>
+      </div>
+      <button class="link-container">
+        <a class="link" routerLink="moments/{{ moment.id }}">Detalhes</a>
+      </button>
+    </div>
+  </div>
+</div>
+<ng-template #noMoments>
+  <div class="loading-container">
+    <div class="loading"></div>
+    <h4>Loading...</h4>
+  </div>
+</ng-template>

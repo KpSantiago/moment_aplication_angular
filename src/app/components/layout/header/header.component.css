@@ -1,0 +1,63 @@
+header {
+  background-color: #fff;
+  width: 90%;
+  max-width: 90%;
+  height: 85px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  box-shadow: 0 1px 8px 0px rgb(216, 54, 95, 0.15),
+    0 2px 20px 0 rgb(216, 54, 95, 0.1);
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+header .logo a {
+  color: var(--logo-color);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+header .logo a h3 {
+  font-family: "Parisienne", cursive;
+  font-size: 26px;
+}
+
+header .logo a img {
+  max-height: 45px;
+}
+
+nav .menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav .menu li {
+  border-bottom: 2px solid transparent;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav .menu li a {
+  color: var(--default-font-color);
+}
+
+nav .menu li .line {
+  background-color: var(--hover-color);
+  width: 0;
+  height: 2px;
+  transition: 0.35s;
+}
+
+nav .menu li:hover .line {
+  transition: 0.35s;
+  background-color: var(--hover-color);
+  width: 100%;
+  height: 2px;
+}

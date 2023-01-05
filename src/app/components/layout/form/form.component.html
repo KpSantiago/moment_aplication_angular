@@ -1,0 +1,66 @@
+<!-- 
+  VALIDAÇÃO E ENVIO DO FORMULÁRIO
+  1 - Fazer function para o enviodo forms
+ 
+  2 - declarar um grupo de formulário para o angular mapear 
+  e conseguir disparar as validções [formGroup]="nomeDoFormulário"
+ 
+  3 - Indicar para o Angular a localização do nosso formulário
+  pro meio do #formDir = "ngForm", com isso ele entende que é o
+  formulário e consegue mapear ele
+    - o formDir será utilizado para fazermos o processo de validação no template
+-->
+<form (ngSubmit)="submit()" [formGroup]="mommentForm" #formDir="ngForm">
+  <!-- id para edição -->
+  <input type="hidden" formControlName="id" />
+  <div class="form-group">
+    <label class="titulo" for="titulo">Título:</label>
+    <!-- formsControlName é a propriedade por fazer o mapeamento para a validação -->
+    <input
+      type="text"
+      name="titulo"
+      requiered
+      formControlName="title"
+      id="titulo"
+    />
+    <!-- VALIDAÇÃO TITLE -->
+    <!-- OBS: o angular entende as propriedades como não incializadas, uma vez que,
+  só foi incialiado o grupo de formulário, sendo assim, para ser feita a validação,
+  precisa-se inicializar as propriedades que serão validadas -->
+    <div *ngIf="title!.invalid && formDir.submitted" class="errors-validators">
+      <p *ngIf="title!.errors?.['required']">O título é obrigatório!</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="descricao">Descrição:</label>
+    <textarea
+      name="descricao"
+      requiered
+      formControlName="description"
+      id="descricao"
+    ></textarea>
+    <div
+      *ngIf="description!.invalid && formDir.submitted"
+      class="errors-validators"
+    >
+      <p *ngIf="description!.errors?.['required']">
+        A descrição é obrigatória!
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="image">Foto da publicação:</label>
+    <input
+      type="file"
+      name="image"
+      id="image"
+      (change)="selectedFile($event)"
+    />
+  </div>
+  <div class="button">
+    <button class="submit" type="submit">{{ btnText }}</button>
+    <div class="style"></div>
+  </div>
+</form>

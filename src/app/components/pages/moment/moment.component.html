@@ -1,0 +1,95 @@
+<div class="moment-container" *ngIf="momentDetail">
+  <div class="back-icon" (click)="return()">
+    <fa-icon [icon]="faReturn"></fa-icon>
+  </div>
+  <div class="image">
+    <img
+      src="{{ baseApiUrl }}uploads/{{ momentDetail.image }}"
+      alt="{{ momentDetail.title }}"
+    />
+  </div>
+  <div class="title-data">
+    <h2>{{ momentDetail.title }}</h2>
+    <p>
+      <strong>{{ momentDetail.created_at }}</strong>
+    </p>
+  </div>
+  <div class="description-actions">
+    <p class="description">{{ momentDetail.description }}</p>
+    <div class="actions">
+      <button class="edit-btn" (click)="editMoment(momentDetail.id!)">
+        <fa-icon [icon]="faEdit"></fa-icon>
+        Editar
+      </button>
+      <button class="delete-btn" (click)="removeMoment(momentDetail.id!)">
+        <fa-icon [icon]="faDelete"></fa-icon>
+        Deletar
+      </button>
+    </div>
+  </div>
+  <div class="comments-area">
+    <div class="comments-header">
+      <h3>
+        Comentários<span *ngIf="momentDetail.comments!.length > 0"
+          >({{ momentDetail.comments?.length }})</span
+        >:
+      </h3>
+      <strong
+        (click)="viewComments()"
+        class="verMais"
+        *ngIf="momentDetail.comments!.length > 0; else noComments"
+        >Ver mais...</strong
+      >
+      <ng-template #noComments>
+        <strong>Nenhum</strong>
+      </ng-template>
+    </div>
+    <div class="add-comment">
+      <button (click)="addComment()">
+        <fa-icon [icon]="faAdd"></fa-icon>
+        Comentar
+      </button>
+    </div>
+  </div>
+  <div class="comments-container">
+    <div class="comment" *ngFor="let comment of momentDetail.comments">
+      <p class="comment-text">{{ comment.text }}</p>
+      <p class="comment-author">
+        Por: <strong>{{ comment.username }}</strong>
+      </p>
+    </div>
+    <strong (click)="closeViewComments()" class="verMenos">Ver menos...</strong>
+  </div>
+</div>
+<div class="form-container">
+  <div class="close" (click)="closeFormComment()">
+    <fa-icon [icon]="faDelete"></fa-icon>
+  </div>
+  <form
+    (click)="submitComment(formDir)"
+    [formGroup]="commentForm"
+    #formDir="ngForm"
+  >
+    <div>
+      <label for="name">Nome:</label>
+      <input type="text" id="name" formControlName="username" />
+      <p
+        *ngIf="username?.invalid && formDir.submitted"
+        class="errors-validators"
+      >
+        Insira um nome!
+      </p>
+    </div>
+    <div>
+      <label for="comment">Comentário:</label>
+      <textarea id="comment" rows="2" formControlName="text"></textarea>
+      <p
+        *ngIf="username?.invalid && formDir.submitted"
+        class="errors-validators"
+      >
+        Insira um comentário!
+      </p>
+    </div>
+    <button class="btn">Comentar</button>
+  </form>
+</div>
