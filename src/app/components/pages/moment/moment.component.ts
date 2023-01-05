@@ -34,7 +34,7 @@ import {
   styleUrls: ['./moment.component.css'],
 })
 export class MomentComponent implements OnInit {
-  baseApiUrl = environment.baseApiUrl;
+  baseApiUrl: string = 'http://localhost:3333/';
 
   momentDetail?: Moments;
 
