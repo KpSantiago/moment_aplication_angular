@@ -12,7 +12,7 @@ import { MessageService } from 'src/app/services/messageService/message.service'
   styleUrls: ['./edit-moment.component.css'],
 })
 export class EditMomentComponent implements OnInit {
-  baseApiUrl = environment.baseApiUrl;
+  baseApiUrl: string = environment.baseApiUrl;
 
   moment?: Moments;
 

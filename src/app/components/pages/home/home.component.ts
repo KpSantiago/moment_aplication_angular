@@ -14,7 +14,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  baseApiUrl = environment.baseApiUrl;
+  baseApiUrl: string = environment.baseApiUrl;
 
   // array principal
   allMomentsHome: Moments[] = [];
