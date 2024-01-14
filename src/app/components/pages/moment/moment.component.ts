@@ -60,7 +60,6 @@ export class MomentComponent implements OnInit {
       const data = items.data;
       data.created_at = new Date(data.created_at!).toLocaleDateString('pt-BR');
       this.momentDetail! = data;
-      console.log(this.momentDetail);
     });
 
     // comment of moment data
