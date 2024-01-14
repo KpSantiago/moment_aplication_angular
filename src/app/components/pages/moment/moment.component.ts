@@ -34,7 +34,7 @@ import {
   styleUrls: ['./moment.component.css'],
 })
 export class MomentComponent implements OnInit {
-  baseApiUrl: string = 'http://localhost:3333/';
+  baseApiUrl: string = environment.baseApiUrl;
 
   momentDetail?: Moments;
 
@@ -51,12 +51,11 @@ export class MomentComponent implements OnInit {
     private router: Router,
     private ServiceMessage: MessageService,
     private ServiceComment: CommentsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // moment data
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log();
     this.ServiceMoments.getMoment(id).subscribe((items) => {
       const data = items.data;
       data.created_at = new Date(data.created_at!).toLocaleDateString('pt-BR');
@@ -79,6 +78,7 @@ export class MomentComponent implements OnInit {
   get text() {
     return this.commentForm.get('text');
   }
+
   async submitComment(formDirective: FormGroupDirective) {
     if (this.commentForm.invalid) {
       return;
@@ -86,15 +86,22 @@ export class MomentComponent implements OnInit {
 
     const data: Comments = this.commentForm.value;
 
-    data.momentId = Number(this.momentDetail!.id);
+    data.moment_id = this.momentDetail!.id!;
 
-    await this.ServiceComment.createComment(data).subscribe((comment) =>
-      this.momentDetail!.comments!.push(comment.data)
-    );
+    await this.ServiceComment.createComment(data).subscribe({
+      next: (r) => {
+        this.ServiceMessage.addMessage(
+          r.message!
+        );
+      },
+      error: (err) => {
+        this.ServiceMessage.addMessage(
+          err.error.message!
+        );
+      }
+    });
 
-    this.ServiceMessage.addMessage(
-      `Comentário de ${data.username} adicionado com sucesso!`
-    );
+
 
     // resetar form
     this.commentForm.reset(); //reseta no front
@@ -110,15 +117,18 @@ export class MomentComponent implements OnInit {
   }
 
   editMoment(id: number): void {
-    this.router.navigate([`moments/edit/${id}`]);
+    this.router.navigate([`moments / edit / ${id}`]);
   }
 
   async removeMoment(id: number) {
-    await this.ServiceMoments.removeMoment(id).subscribe();
-
-    this.ServiceMessage.addMessage('Momento excluído com sucesso');
-
-    this.router.navigate(['/']);
+    await this.ServiceMoments.removeMoment(id).subscribe({
+      next: (r) => {
+        this.ServiceMessage.addMessage(r.message!);
+        this.router.navigate(['/']);
+      }, error: (err) => {
+        this.ServiceMessage.addMessage(err.error.message!);
+      }
+    });
   }
 
   addComment(): void {

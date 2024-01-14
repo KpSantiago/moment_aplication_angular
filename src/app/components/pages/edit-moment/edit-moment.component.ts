@@ -12,7 +12,7 @@ import { MessageService } from 'src/app/services/messageService/message.service'
   styleUrls: ['./edit-moment.component.css'],
 })
 export class EditMomentComponent implements OnInit {
-  baseApiUrl: string = 'http://localhost:3333/';
+  baseApiUrl: string = environment.baseApiUrl;
 
   moment?: Moments;
 
@@ -23,7 +23,7 @@ export class EditMomentComponent implements OnInit {
     private routes: ActivatedRoute,
     private router: Router,
     private ServiceMessage: MessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = Number(this.routes.snapshot.paramMap.get('id'));
@@ -38,18 +38,12 @@ export class EditMomentComponent implements OnInit {
   }
 
   async editMoment(momentData: Moments) {
-    const id = momentData.id;
+    const id: any = momentData.id;
 
     const formData = new FormData();
-
-    formData.append('title', momentData.title);
-
-    formData.append('description', momentData.description);
-
-    if (momentData.image) {
-      formData.append('image', momentData.image);
-    }
-
+    formData.append('title', momentData.title)
+    formData.append('description', momentData.description)
+    formData.append('image', momentData.image)
     await this.ServiceMoments.updateMoment(id!, formData).subscribe();
 
     this.ServiceMessage.addMessage(

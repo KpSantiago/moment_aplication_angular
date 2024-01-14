@@ -20,12 +20,12 @@ import { Response } from 'src/app/interfaces/response';
 })
 export class MomentsService {
   // aqui será a URL base da nossa API
-  private baseApiUrl: string = 'https://silly-gray-salamander.cyclic.cloud/';
+  private baseApiUrl: string = environment.baseApiUrl;
 
   // aqui será a rota que utilizaremos para a requisição
   private ApiUrl = `${this.baseApiUrl}api/moments`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // tipamos como FormData logicament porque são dados de um forms
   postMoment(formData: FormData): Observable<FormData> {

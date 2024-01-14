@@ -10,7 +10,7 @@
     <div class="moments" *ngFor="let moment of momentsHome">
       <div class="image">
         <img
-          src="{{ baseApiUrl }}uploads/{{ moment.image }}"
+          src="http://localhost:3000/api/images/{{ moment.image }}"
           alt="{{ moment.title }}"
         />
       </div>

@@ -4,17 +4,16 @@ import { Moments } from 'src/app/interfaces/moments';
 
 import { MomentsService } from 'src/app/services/momentsService/moments.service';
 
-import { environment } from 'src/environments/environment';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  baseApiUrl: string = 'http://localhost:3333/';
+  baseApiUrl: string = environment.baseApiUrl;
 
   // array principal
   allMomentsHome: Moments[] = [];
@@ -27,9 +26,10 @@ export class HomeComponent implements OnInit {
   // busca
   searchMoment: string = '';
 
-  constructor(private ServiceMoments: MomentsService) {}
+  constructor(private ServiceMoments: MomentsService) { }
 
   ngOnInit(): void {
+
     this.ServiceMoments.getAllMoments().subscribe((items) => {
       // o items tem duas propriedades, o "data" e o "message"
       const data = items.data;
@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
       });
 
       this.allMomentsHome = data;
-      console.log(this.allMomentsHome);
       this.momentsHome = data;
     });
   }

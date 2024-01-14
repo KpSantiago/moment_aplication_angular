@@ -49,6 +49,7 @@
   flex-wrap: wrap;
   gap: 30px;
 }
+
 .moments {
   height: fit-content;
   width: fit-content;
@@ -61,6 +62,12 @@
 .moments,
 .image img {
   border-radius: 20px;
+}
+
+.moments .description {
+  line-clamp: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .moments div:not(:first-child) {

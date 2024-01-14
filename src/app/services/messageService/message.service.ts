@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class MessageService {
   message: string = '';
 
-  constructor() {}
+  constructor() { }
 
   addMessage(message: string) {
     this.message = message;
@@ -16,5 +16,6 @@ export class MessageService {
   }
   clearMessage() {
     this.message = '';
+    location.reload()
   }
 }

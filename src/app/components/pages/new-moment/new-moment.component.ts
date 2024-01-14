@@ -21,31 +21,28 @@ export class NewMomentComponent implements OnInit {
     private serviceMoments: MomentsService,
     private ServiceMessage: MessageService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  async createHandler(moment: Moments) {
+  async createHandler(momentData: Moments) {
     // utilizaremos a classe formData para o envio dos dados
     // como trabalharemos com a API teremos de usar a function como async
 
     const formData = new FormData();
+    formData.append('title', momentData.title)
+    formData.append('description', momentData.description)
+    formData.append('image', momentData.image)
 
-    // para trabalhar e adicionar no formData os paremetros do append() são
-    // parametro 1: atributo/campo
-    // parametro 2: o que vai ser adicionado nesse campo(parametro 1)
-    formData.append('title', moment.title);
 
-    formData.append('description', moment.description);
-
-    if (moment.image) {
-      formData.append('image', moment.image);
-    }
-
-    await this.serviceMoments.postMoment(formData).subscribe();
-
-    // navigate é o método utilizado para redirect
-    this.ServiceMessage.addMessage('Momento compartilhado!!');
-    this.router.navigate(['/']);
+    await this.serviceMoments.postMoment(formData).subscribe({
+      next: () => {
+        // navigate é o método utilizado para redirect
+        this.ServiceMessage.addMessage('Momento compartilhado!!');
+        this.router.navigate(['/']);
+      }, error: (err) => {
+        this.ServiceMessage.addMessage(err.error.message);
+      }
+    });
   }
 }

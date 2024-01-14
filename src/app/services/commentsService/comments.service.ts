@@ -12,15 +12,15 @@ import { Response } from 'src/app/interfaces/response';
   providedIn: 'root',
 })
 export class CommentsService {
-  private baseApiUrl: string = 'http://localhost:3333/';
+  private baseApiUrl: string = environment.baseApiUrl;
 
-  private apiUrl = `${this.baseApiUrl}api/moments`;
+  private apiUrl = `${this.baseApiUrl}api/`;
 
   constructor(private http: HttpClient) {}
 
   createComment(comment: Comments): Observable<Response<Comments>> {
     return this.http.post<Response<Comments>>(
-      `${this.apiUrl}/${comment.momentId}/comments`,
+      `${this.apiUrl}comments`,
       comment
     );
   }

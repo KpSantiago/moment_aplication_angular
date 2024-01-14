@@ -5,10 +5,10 @@ interface env {
   production: boolean;
   baseApiUrl: string;
 }
-
 export const environment: env = {
   production: false,
 
   // URL API
-  baseApiUrl: 'http://localhost:3333/',
+  baseApiUrl: 'http://localhost:3000/',
 };
+
