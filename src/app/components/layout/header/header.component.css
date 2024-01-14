@@ -7,7 +7,7 @@ header {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  row-gap: 60px;
+  column-gap: 60px;
   padding: 0 60px;
   box-shadow: 0 1px 8px 0px rgb(216, 54, 95, 0.15),
     0 2px 20px 0 rgb(216, 54, 95, 0.1);
