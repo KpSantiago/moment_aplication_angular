@@ -53,6 +53,7 @@
 .moments {
   height: fit-content;
   width: fit-content;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -68,6 +69,7 @@
   line-clamp: 1;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .moments div:not(:first-child) {
