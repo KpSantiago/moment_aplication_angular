@@ -44,12 +44,16 @@ export class EditMomentComponent implements OnInit {
     formData.append('title', momentData.title)
     formData.append('description', momentData.description)
     formData.append('image', momentData.image)
-    await this.ServiceMoments.updateMoment(id!, formData).subscribe();
+    await this.ServiceMoments.updateMoment(id!, formData).subscribe({
+      next: (r) => {
+        this.ServiceMessage.addMessage(r.message!);
+        this.router.navigate(['/']);
+      },
+      error: (err)=>{
+        this.ServiceMessage.addMessage(err.error.message!);
+      }
+    });
 
-    this.ServiceMessage.addMessage(
-      `Momento ${momentData.title} editado com sucesso!`
-    );
 
-    this.router.navigate(['/']);
   }
 }
