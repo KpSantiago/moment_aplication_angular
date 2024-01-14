@@ -9,6 +9,6 @@ export const environment: env = {
   production: false,
 
   // URL API
-  baseApiUrl: 'http://localhost:3000/',
+  baseApiUrl: 'https://moments-api-8cks.onrender.com',
 };
 
