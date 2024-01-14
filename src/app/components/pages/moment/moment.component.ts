@@ -117,7 +117,7 @@ export class MomentComponent implements OnInit {
   }
 
   editMoment(id: number): void {
-    this.router.navigate([`moments / edit / ${id}`]);
+    this.router.navigate([`moments/edit/${id}`]);
   }
 
   async removeMoment(id: number) {
