@@ -61,7 +61,8 @@
 }
 
 .moments,
-.image img {
+.image img,
+.noimg {
   border-radius: 20px;
 }
 
@@ -78,6 +79,12 @@
 
 .moments .image img {
   width: 400px;
+}
+
+.noimg {
+  background-color: #cdcdcd;
+  width: 400px;
+  height: 200px;
 }
 
 .moments .title {

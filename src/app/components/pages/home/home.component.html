@@ -9,10 +9,11 @@
   <div class="moments-container">
     <div class="moments" *ngFor="let moment of momentsHome">
       <div class="image">
-        <img
-          src="{{baseApiUrl}}api/images/{{ moment.image }}"
-          alt="{{ moment.title }}"
-        />
+        <img src="{{baseApiUrl + 'api/images/' + moment.image }}" alt="{{ moment.title }}"
+          *ngIf="moment.image; else noImg" />
+        <ng-template #noImg>
+          <div class="noimg"></div>
+        </ng-template>
       </div>
       <div class="title">
         <strong>{{ moment.title }}</strong>
@@ -23,13 +24,8 @@
       </div>
       <div class="comments">
         <strong [ngStyle]="{ 'margin-right': '5px' }">Comentários:</strong>
-        <span
-          >{{
-            moment.comments!.length <= 0
-              ? "Nenhum"
-              : moment.comments!.length + " comentários"
-          }}
-        </span>
+        <span>{{
+          moment.comments!.length <= 0 ? "Nenhum" : moment.comments!.length + " comentários" }} </span>
       </div>
       <button class="link-container">
         <a class="link" routerLink="moments/{{ moment.id }}">Detalhes</a>
